@@ -61,13 +61,13 @@
           }
           <form id="search" action="@context.path/search" method="GET" class="pc navbar-form navbar-left" role="search">
             <div class="form-group">
-              <input type="text" name="query" id="navbar-search-input" class="form-control" placeholder="Search repository"/>
+              <input type="text" name="query" id="navbar-search-input" class="form-control" placeholder="リポジトリ検索" title="Search repository"/>
             </div>
           </form>
           <ul class="pc nav navbar-nav">
             @if(context.loginAccount.isDefined){
-              <li><a href="@context.path/dashboard/pulls">Pull requests</a></li>
-              <li><a href="@context.path/dashboard/issues">Issues</a></li>
+              <li><a href="@context.path/dashboard/pulls" title="Pull requests">プルリクエスト</a></li>
+              <li><a href="@context.path/dashboard/issues" title="Issues"></a></li>
             }
             @gitbucket.core.plugin.PluginRegistry().getGlobalMenus.map { menu =>
               @menu(context).map { link =>
@@ -85,8 +85,8 @@
                   <ul class="dropdown-menu pull-right" style="width: auto;">
                     <li>
                       <ul class="menu">
-                        <li><a href="@context.path/new">New repository</a></li>
-                        <li><a href="@context.path/groups/new">New group</a></li>
+                        <li><a href="@context.path/new" title="New repository">新規リポジトリ作成</a></li>
+                        <li><a href="@context.path/groups/new" title="New group">新規グループ作成</a></li>
                       </ul>
                     </li>
                   </ul>
@@ -98,19 +98,19 @@
                   <ul class="dropdown-menu pull-right" style="width: auto;">
                     <li>
                       <ul class="menu">
-                        <li><a href="@helpers.url(context.loginAccount.get.userName)">Your profile</a></li>
-                        <li><a href="@helpers.url(context.loginAccount.get.userName)/_edit">Account settings</a></li>
+                        <li><a href="@helpers.url(context.loginAccount.get.userName)" title="Your profile">プロフィール</a></li>
+                        <li><a href="@helpers.url(context.loginAccount.get.userName)/_edit" title="Account settings">アカウント設定</a></li>
                         @if(context.loginAccount.get.isAdmin){
-                          <li><a href="@context.path/admin/users">System administration</a></li>
+                          <li><a href="@context.path/admin/users" title="System administration">システム管理</a></li>
                         }
-                        <li><a href="@context.path/signout">Sign out</a></li>
+                        <li><a href="@context.path/signout" title="Sign out">サインアウト</a></li>
                       </ul>
                     </li>
                   </ul>
                 </li>
               } else {
                 <li>
-                  <a href="@context.path/signin?redirect=@helpers.urlEncode(context.currentPath)" class="pull-right" id="signin">Sign in</a>
+                  <a href="@context.path/signin?redirect=@helpers.urlEncode(context.currentPath)" class="pull-right" id="signin" title="Sign in">サインイン</a>
                 </li>
               }
             </ul>

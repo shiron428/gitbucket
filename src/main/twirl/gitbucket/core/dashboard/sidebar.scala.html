@@ -5,14 +5,14 @@
   <div class="sidebar">
   <ul class="nav sidebar-menu">
   @if(context.loginAccount.isDefined){
-    <li class="header">
+    <li class="header" title="Your repositories">
       <span class="label label-primary pull-right">@userRepositories.size</span>
       マイリポジトリ
     </li>
     @if(userRepositories.isEmpty){
-      <li>リポジトリがありません</li>
+      <li title="No repositories">リポジトリがありません</li>
     } else {
-      <li><form class="sidebar-form"><input type="text" id="filter-box" class="form-control input-sm" placeholder="フィルター検索"/></form></li>
+      <li><form class="sidebar-form"><input type="text" id="filter-box" class="form-control input-sm" placeholder="フィルター検索" title="Find repository"/></form></li>
       @userRepositories.zipWithIndex.map { case (repository, i) =>
         <li class="repo-link menu-item-hover">
           @if(repository.owner == context.loginAccount.get.userName){
@@ -24,11 +24,11 @@
       }
     }
   } else {
-    <li class="header">最近更新されたリポジトリ</li>
+    <li class="header" title="Recent updated repositories">最近更新されたリポジトリ</li>
     @if(recentRepositories.isEmpty){
-      <li>リポジトリがありません</li>
+      <li title="No repositories">リポジトリがありません</li>
     } else {
-      <li><form class="sidebar-form"><input type="text" id="filter-box" class="form-control input-sm" placeholder="フィルター検索"/></form></li>
+      <li><form class="sidebar-form"><input type="text" id="filter-box" class="form-control input-sm" placeholder="フィルター検索" title="Find repository"/></form></li>
       @recentRepositories.zipWithIndex.map { case (repository, i) =>
         <li class="repo-link menu-item-hover">
           <a href="@helpers.url(repository)">@gitbucket.core.helper.html.repositoryicon(repository, false) <span>@repository.owner/<span class="strong">@repository.name</span></span></a>
